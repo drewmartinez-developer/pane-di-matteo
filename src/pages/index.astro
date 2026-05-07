@@ -1,0 +1,373 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { Image } from 'astro:assets';
+import heroBreadShelves from '../assets/images/hero-bread-shelves.jpg';
+import doughBalls from '../assets/images/dough-balls.jpg';
+---
+
+<BaseLayout
+  title="Pane di Matteo | Artisan Bread & Pastries, Highton Geelong"
+>
+
+  <!-- ─── Hero ─────────────────────────────────────────────────────────── -->
+  <section class="hero">
+    <Image
+      src={heroBreadShelves}
+      alt=""
+      widths={[640, 960, 1280, 1920]}
+      sizes="100vw"
+      loading="eager"
+      fetchpriority="high"
+      class="hero__img"
+    />
+    <div class="hero__overlay">
+      <div class="container">
+        <h1 class="hero__headline">Bread.<br>Pastries.<br>Coffee.</h1>
+        <p class="hero__sub">Italian artisan bakery. Highton, Geelong.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Intro ─────────────────────────────────────────────────────────── -->
+  <section class="intro section">
+    <div class="container intro__grid">
+      <div class="intro__image">
+        <Image
+          src={doughBalls}
+          alt="Fresh dough balls resting on a floured surface, ready for shaping"
+          widths={[400, 600, 800]}
+          sizes="(min-width: 768px) 50vw, 100vw"
+          loading="lazy"
+          class="intro__img"
+        />
+      </div>
+      <div class="intro__copy">
+        <h2 class="intro__heading">Built on forty years of family bread-making.</h2>
+        <p>
+          Matt spent 14 years learning the craft in his father's wholesale bakery before
+          opening Pane di Matteo in 2014. Every loaf, every pastry. Made here, by hand,
+          before the rest of Highton wakes up.
+        </p>
+        <p>
+          No shortcuts. No preservatives. Sells out by late morning. We make what we make,
+          and that's the point.
+        </p>
+        <a href="/our-story" class="link-arrow">Our story &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Today's highlights ───────────────────────────────────────────── -->
+  <section class="highlights section">
+    <div class="container">
+      <h2 class="highlights__heading">On the shelf today.</h2>
+      <ul class="highlights__grid">
+        <li class="highlight-card">
+          <h3>Bread</h3>
+          <p>Sourdough, ciabatta, baguettes, focaccia, rye, spelt.</p>
+        </li>
+        <li class="highlight-card">
+          <h3>Pastries</h3>
+          <p>Croissants, cannoli, Nutella lobsters, biscotti.</p>
+        </li>
+        <li class="highlight-card">
+          <h3>Coffee</h3>
+          <p>Italian beans. Full espresso menu. Alternative milks.</p>
+        </li>
+        <li class="highlight-card">
+          <h3>Lunch</h3>
+          <p>Focaccia with toppings, baguettes, panini.</p>
+        </li>
+      </ul>
+      <a href="/menu" class="link-arrow">Full menu &rarr;</a>
+    </div>
+  </section>
+
+  <!-- ─── Hours + Location ─────────────────────────────────────────────── -->
+  <section class="visit section">
+    <div class="container visit__grid">
+      <div class="visit__hours">
+        <h2>Hours.</h2>
+        <p class="visit__note">Until sold out. Come early.</p>
+        <dl class="hours-list">
+          <div class="hours-row">
+            <dt>Mon – Fri</dt>
+            <dd>7:00am – 1:00pm</dd>
+          </div>
+          <div class="hours-row">
+            <dt>Saturday</dt>
+            <dd>7:30am – 12:30pm</dd>
+          </div>
+          <div class="hours-row">
+            <dt>Sunday</dt>
+            <dd>8:30am – 11:30am</dd>
+          </div>
+        </dl>
+      </div>
+      <div class="visit__location">
+        <h2>Find us.</h2>
+        <address>
+          <p>12 Porter Ave</p>
+          <p>Highton VIC 3216</p>
+          <p><a href="tel:+61352457492">(03) 5245 7492</a></p>
+        </address>
+        <a href="/visit" class="link-arrow">Map & directions &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+/* ─── Hero ───────────────────────────────────────────────────────────────── */
+
+.hero {
+  position: relative;
+  min-height: 95svh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 768px) {
+  .hero {
+    min-height: 100svh;
+  }
+}
+
+.hero__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.hero__overlay {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: var(--space-16);
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    transparent 40%,
+    rgba(26, 26, 24, 0.6) 65%,
+    rgba(26, 26, 24, 0.85) 100%
+  );
+}
+
+.hero__headline {
+  font-size: clamp(2.5rem, 9vw, 6rem);
+  line-height: 0.92;
+  letter-spacing: 0.02em;
+}
+
+.hero__sub {
+  margin-top: var(--space-6);
+  font-size: 1rem;
+  font-weight: 300;
+  color: var(--color-offwhite-dim);
+}
+
+.hero__sub::before {
+  content: '';
+  display: block;
+  width: 2rem;
+  height: 1px;
+  background-color: var(--color-walnut);
+  margin-bottom: var(--space-4);
+}
+
+/* ─── Intro ──────────────────────────────────────────────────────────────── */
+
+.intro {
+  background-color: var(--color-charcoal-raised);
+}
+
+.intro__grid {
+  max-width: 1100px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-10);
+}
+
+@media (min-width: 768px) {
+  .intro__grid {
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: var(--space-16);
+  }
+}
+
+.intro__img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.intro__heading {
+  font-size: clamp(1.75rem, 5vw, 2.75rem);
+  margin-bottom: var(--space-6);
+}
+
+.intro__copy p {
+  color: var(--color-offwhite-dim);
+  font-size: 1.0625rem;
+}
+
+.intro__copy p + p {
+  margin-top: var(--space-4);
+}
+
+/* ─── Link arrow ─────────────────────────────────────────────────────────── */
+
+.link-arrow {
+  display: inline-block;
+  margin-top: var(--space-8);
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.8125rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-offwhite);
+  border-bottom: 1px solid var(--color-charcoal-soft);
+  padding-bottom: var(--space-1);
+  transition: border-color 0.2s ease;
+}
+
+.link-arrow:hover {
+  border-color: var(--color-offwhite);
+}
+
+/* ─── Highlights ─────────────────────────────────────────────────────────── */
+
+.highlights {
+  background-color: var(--color-charcoal-mid);
+}
+
+.highlights__heading::before,
+.visit h2::before {
+  content: '';
+  display: block;
+  width: 2rem;
+  height: 1px;
+  background-color: var(--color-walnut);
+  margin-bottom: var(--space-4);
+}
+
+.highlights__heading {
+  font-size: clamp(1.5rem, 4vw, 2.25rem);
+  margin-bottom: var(--space-10);
+}
+
+.highlights__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-1);
+  margin-bottom: var(--space-4);
+}
+
+@media (min-width: 640px) {
+  .highlights__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .highlights__grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.highlight-card {
+  padding: var(--space-8) var(--space-6);
+  background-color: var(--color-charcoal);
+}
+
+.highlight-card h3 {
+  font-size: 0.8125rem;
+  letter-spacing: 0.14em;
+  margin-bottom: var(--space-3);
+}
+
+.highlight-card p {
+  font-size: 0.9375rem;
+  color: var(--color-offwhite-dim);
+  line-height: 1.5;
+}
+
+/* ─── Visit / Hours ──────────────────────────────────────────────────────── */
+
+.visit {
+  background-color: var(--color-charcoal);
+}
+
+.visit__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-12);
+}
+
+@media (min-width: 768px) {
+  .visit__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-16);
+  }
+}
+
+.visit h2 {
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  margin-bottom: var(--space-4);
+}
+
+.visit__note {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-walnut-light);
+  margin-bottom: var(--space-6);
+}
+
+.hours-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.hours-row {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-4);
+  font-size: 0.9375rem;
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--color-charcoal-mid);
+}
+
+.hours-row dt {
+  color: var(--color-offwhite-dim);
+}
+
+.hours-row dd {
+  font-weight: 500;
+}
+
+address {
+  font-style: normal;
+  font-size: 1rem;
+  color: var(--color-offwhite-dim);
+  line-height: 1.8;
+}
+
+address a {
+  color: var(--color-offwhite);
+}
+
+address a:hover {
+  text-decoration: underline;
+}
+</style>

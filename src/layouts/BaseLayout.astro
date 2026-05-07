@@ -1,0 +1,140 @@
+---
+import '../styles/global.css';
+import { Image } from 'astro:assets';
+import logoRect from '../assets/images/logo-rectangle.jpg';
+
+interface Props {
+  title: string;
+  description?: string;
+  ogImage?: string;
+}
+
+const {
+  title,
+  description = 'Pane di Matteo — artisan Italian bread, pastries & coffee in Highton, Geelong. Open daily until sold out.',
+  ogImage = '/images/og-default.jpg',
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang="en-AU">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Preload above-fold fonts: Fraunces 700 (hero/headers) + Inter 300 (body) -->
+    <link
+      rel="preload"
+      href="/fonts/fraunces-latin-700-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/inter-latin-300-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+
+    <!-- Primary meta -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(ogImage, Astro.site)} />
+    <meta property="og:locale" content="en_AU" />
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a href="/" class="site-header__logo" aria-label="Pane di Matteo, home">
+        <Image
+          src={logoRect}
+          alt=""
+          width={280}
+          height={70}
+          loading="eager"
+          class="site-header__logo-img"
+        />
+      </a>
+      <a
+        href="https://www.instagram.com/panedimatteo"
+        class="site-header__instagram"
+        aria-label="Pane di Matteo on Instagram"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+          <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+        </svg>
+      </a>
+    </header>
+    <slot />
+
+  </body>
+</html>
+
+<style>
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: var(--color-charcoal);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.site-header__logo {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-4) var(--space-6);
+}
+
+.site-header__logo-img {
+  display: block;
+  width: 180px;
+  max-width: calc(100vw - var(--space-12));
+  height: auto;
+}
+
+@media (max-width: 639px) {
+  .site-header__logo-img {
+    width: 140px;
+  }
+}
+
+@supports (mix-blend-mode: lighten) {
+  .site-header__logo-img {
+    mix-blend-mode: lighten;
+  }
+}
+
+.site-header__instagram {
+  display: flex;
+  align-items: center;
+  padding: var(--space-4) var(--space-6);
+  color: var(--color-offwhite);
+  transition: color 0.2s ease;
+}
+
+.site-header__instagram:hover {
+  color: #ffffff;
+}
+</style>
