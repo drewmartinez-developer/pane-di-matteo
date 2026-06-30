@@ -2,7 +2,7 @@
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
-  site: 'https://panedimatteo.com.au',
+  site: 'https://panedimatteo.com',
   output: 'static',
   image: {
     service: { entrypoint: 'astro/assets/services/sharp' },

@@ -1,7 +1,7 @@
 ---
 import '../styles/global.css';
 import { Image } from 'astro:assets';
-import logoRect from '../assets/images/logo-rectangle.jpg';
+import logo from '../assets/images/logo.svg';
 
 interface Props {
   title: string;
@@ -63,10 +63,8 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <header class="site-header">
       <a href="/" class="site-header__logo" aria-label="Pane di Matteo, home">
         <Image
-          src={logoRect}
+          src={logo}
           alt=""
-          width={280}
-          height={70}
           loading="eager"
           class="site-header__logo-img"
         />
@@ -117,12 +115,6 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 @media (max-width: 639px) {
   .site-header__logo-img {
     width: 140px;
-  }
-}
-
-@supports (mix-blend-mode: lighten) {
-  .site-header__logo-img {
-    mix-blend-mode: lighten;
   }
 }
 
